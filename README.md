@@ -26,9 +26,9 @@ magic rings, dodge bats, branches, gravestones and telegraphed lightning, and su
 - Storm Raven cinematic intro (letterbox) + chase with lightning calls, bonus for surviving
 - Moon, purple starry sky, fog, god rays, fireflies, falling leaves, rain, lightning + thunder, bloom
 - End screen: score, distance, stars, best chain, best score (localStorage), rank (Broom Apprentice → Grand High Witch),
-  name field (default "Frank"), share text EN + DE, 1080×1350 PNG end card, Fly again
+  name field (default "Player" (EN) / "Spieler" (DE)), share text EN + DE, 1080×1350 PNG end card, Fly again
 - Real CC0 samples (warm/low, no beeps), separate music / effects volume, mute — see `LICENSES/SOUNDS.md`
-- Kids mode (Theodor & Martha): slower, wider gaps, cute bats, no scary screeches, more stars, 5 lives, friendly "Thunder Bird"
+- Kids mode (for younger kids): slower, wider gaps, cute bats, no scary screeches, more stars, 5 lives, friendly "Thunder Bird"
 - Quality Low / Medium / High / Ultra with FPS-based suggestion · English default, German toggle
 
 ## Build

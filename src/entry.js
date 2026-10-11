@@ -11,6 +11,7 @@ import { createRaven, updateRaven } from './boss.js';
 import * as FX from './fx.js';
 import * as A from './audio.js';
 import { T, setLang, getLang, applyI18n, rankFor, shareText, fmt } from './i18n.js';
+const defName = () => (getLang() === 'de' ? 'Spieler' : 'Player');
 import { rand, clamp, lerp, damp, pick, store } from './util.js';
 
 const $ = id => document.getElementById(id);
@@ -24,7 +25,7 @@ const S = {
   state: 'attract', kids: store.get('wbr-kids', false) === true, quality: store.get('wbr-quality', ''), qualityUser: !!store.get('wbr-quality', ''),
   elapsed: 0, clock: 0, score: 0, dist: 0, stars: 0, chain: 0, lastStarT: -9, bestChain: 0, lives: 3, maxLives: 3, invuln: 0,
   shield: 0, magnet: 0, x2: 0, boostT: 0, boostCD: 0, hitSlow: 0, timeScale: 1, slowT: 0, slowCD: 0, auto: false,
-  raven: null, ravenDone: false, ravenSurvived: false, ravenHits: 0, best: store.get('wbr-best', 0) || 0, nameV: store.get('wbr-name', 'Frank'),
+  raven: null, ravenDone: false, ravenSurvived: false, ravenHits: 0, best: store.get('wbr-best', 0) || 0, nameV: store.get('wbr-name', defName()),
   shareLang: getLang(), paused: false, zone: 'grave', attractT: 23, endT: 0, crashT: 0, finishT: 0, cine: 0, nextStormBolt: 0, hits: 0, nearCount: 0, gates: 0, rings: 0,
   log: { star: 0, ring: 0, gate: 0, hit: 0, near: 0, pickup: 0, strike: 0, shield: 0, slowmo: 0 }
 };
@@ -271,7 +272,7 @@ function crash() { S.state = 'crash'; S.crashT = 0; A.sfx.crash(); slowmo(0.45, 
 function finish() { S.state = 'finish'; S.finishT = 0; A.sfx.finish(); document.body.classList.add('cine'); chapter('', getLang() === 'de' ? 'MITTERNACHT!' : 'MIDNIGHT!', false, true); }
 function endRound() { if (S.state === 'play') { S.lives = 0; crash(); } }
 function liveResult() { return { score: Math.round(S.score), dist: Math.round(S.dist), stars: S.stars, bestChain: S.bestChain, raven: S.ravenSurvived, finished: S.lives > 0, kids: S.kids }; }
-function result() { const r = (S.state === 'end' && S.lastResult) ? S.lastResult : liveResult(); return { ...r, name: ($('name').value || 'Frank').trim() }; }
+function result() { const r = (S.state === 'end' && S.lastResult) ? S.lastResult : liveResult(); return { ...r, name: ($('name').value || defName()).trim() }; }
 function showEnd() {
   S.lastResult = liveResult();
   S.state = 'end'; S.endT = 0; document.body.classList.remove('playing', 'cine');
